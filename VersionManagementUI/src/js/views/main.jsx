@@ -9,41 +9,35 @@ import '../../css/main.css';
 
 export default function Main() {
     const [buildArtifactList, setBuildArtifactList] = useState([]);
-    const [newBuildArtifactList, setnewBuildArtifactList] = useState([]);
     const [openAddModule, setOpenAddModule] = useState(false);
 
     useEffect(() => {
-        const getBuildArtifactList = () => {
-            artifact.fetchBuildArtifacts().then(res => {
-            setBuildArtifactList(res)});
+        async function getBuildArtifactList() {
+            const result = await artifact.fetchBuildArtifacts();
+
+            setBuildArtifactList(result);
         }
 
         getBuildArtifactList();
-    }, [newBuildArtifactList]);
+    }, []);
 
-    const handleOpenAddModule = () => {
+    function handleOpenAddModule() {
         setOpenAddModule(true);
     }
 
-    const handleCloseAddModule = (e) => {
-        e.preventDefault()
+    function handleCloseAddModule() {
         setOpenAddModule(false);
     }
 
-    const addArtifactToList = (buildArtifact) => {
-        let artifactList = buildArtifactList;
-
-        artifactList.push(buildArtifact);
-
-        setnewBuildArtifactList(artifactList);
+    function addArtifactToList(buildArtifact) {
+        setBuildArtifactList([...buildArtifactList, buildArtifact]);
         setOpenAddModule(false);
     }
 
-    const deleteBuildArtifact = (e, id) => {
-        e.preventDefault();
-        artifact.deleteBuildArtifact(id);
+    async function deleteBuildArtifact(id) {
+        setBuildArtifactList(buildArtifactList.filter((artifact) => artifact.id !== id));
 
-        setnewBuildArtifactList([]);
+        await artifact.deleteBuildArtifact(id);
     }
 
     return (
@@ -74,7 +68,7 @@ export default function Main() {
                                             <td scope="col">{artifact.buildVersion}</td>
                                             <td scope="col" className="edit-delete">
                                                 <Link to={{pathname: `/edit/${artifact.id}` }}>Edit</Link>
-                                                <button onClick={(e) => {deleteBuildArtifact(e, artifact.id)}} type='button' className="btn btn-sm delete-button">
+                                                <button onClick={(e) => {deleteBuildArtifact(artifact.id)}} type='button' className="btn btn-sm delete-button">
                                                     <i className="bi bi-trash3"></i>
                                                 </button>
                                             </td>

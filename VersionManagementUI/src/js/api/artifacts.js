@@ -24,7 +24,11 @@ const artifact = {
             body: JSON.stringify(buildArtifact)
         }
 
-        fetch("/buildartifact/update", requestHeader);
+        fetch("/buildartifact/update", requestHeader).then((res) => {
+            return res.json();
+        }).catch((err) => {
+            throw err;
+        });;
     },
 
     addBuildArtifact(buildArtifact) {

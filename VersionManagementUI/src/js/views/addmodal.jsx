@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import artifact from "../api/artifacts"
 
 export default function AddModal(props) {
@@ -8,12 +8,9 @@ export default function AddModal(props) {
         buildVersion: ""
     });
 
-    const addBuildArtifact = (e) => {
-        e.preventDefault();
-
-        artifact.addBuildArtifact(buildArtifact).then((res) => {
-            props.addArtifact(res);
-        });
+    async function addBuildArtifact() {
+        let results = await artifact.addBuildArtifact(buildArtifact);
+        props.addArtifact(results);
     }
 
     return(

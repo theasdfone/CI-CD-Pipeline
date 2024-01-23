@@ -17,21 +17,21 @@ export default function Edit() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        artifact.fetchBuildArtifactsById(state.id).then(res => {
-        setBuildArtifact(res)});
+        async function getBuildArtifactById() {
+            let result = await artifact.fetchBuildArtifactsById(state.id);
+            setBuildArtifact(result);
+        }
+
+        getBuildArtifactById();
     }, []);
 
-    const updateBuildArtifact = (e) => {
-        e.preventDefault();
-        artifact.updateBuildArtifact(buildArtifact);
-
+    async function updateBuildArtifact() {
+        await artifact.updateBuildArtifact(buildArtifact);
         navigate("/");
     }
 
-    const deleteBuildArtifact = (e) => {
-        e.preventDefault();
-        artifact.deleteBuildArtifact(buildArtifact.id);
-
+    async function deleteBuildArtifact() {
+        await artifact.deleteBuildArtifact(buildArtifact.id);
         navigate("/");
     }
 
