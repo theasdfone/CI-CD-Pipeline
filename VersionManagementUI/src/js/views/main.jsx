@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Nav from "../../components/nav"
-import artifact from "../api/artifacts"
-import AddModal from "../views/addmodal"
+import Nav from "../../components/nav";
+import artifact from "../api/artifacts";
+import AddModal from "../../components/addmodal";
 
 import '../../css/main.css';
 

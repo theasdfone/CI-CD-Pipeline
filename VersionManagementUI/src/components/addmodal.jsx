@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import artifact from "../api/artifacts"
+import artifact from "../js/api/artifacts";
 
 export default function AddModal(props) {
     const [buildArtifact, setBuildArtifact] = useState({

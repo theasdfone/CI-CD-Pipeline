@@ -7,9 +7,12 @@ export default class Nav extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand bg-dark navbar-dark navbar-container">
-                <Link to={{pathname: '/'}}>
-                    <h2 className="navbar-brand">Version Management</h2>
-                </Link>
+                <div>
+                    <button type="button" class="btn btn-sm btn-light bi bi-list hamburger-menu" />
+                    <Link to={{pathname: '/'}}>
+                        <h2 className="navbar-brand">Version Management</h2>
+                    </Link>
+                </div>
             </nav>
         )
 

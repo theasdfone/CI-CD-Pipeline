@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom/dist';
 
-import Nav from "../../components/nav"
-import artifact from "../api/artifacts"
+import Nav from "../../components/nav";
+import artifact from "../api/artifacts";
 
 import '../../css/edit.css';
 
